@@ -12,4 +12,4 @@ bootstrapping scripts for FreeBSD AMI
     > tar zxf master
     > cd reallyenglish-bootstrap-freebsd-ami-*
     # make
-<pre>
+</pre>
