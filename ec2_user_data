@@ -4,7 +4,7 @@
 # REQUIRE: FILESYSTEMS hostname
 
 # download user-data and run its content as sh
-: ${ec2_user_data=YES}
+: ${ec2_user_data_enable=YES}
 
 . /etc/rc.subr
 
