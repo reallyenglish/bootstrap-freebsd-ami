@@ -1,0 +1,22 @@
+#!/bin/sh
+
+# PROVIDE: ec2_user_data
+# REQUIRE: FILESYSTEMS
+
+# download user-data and run its content as sh
+: ${ec2_user_data=YES}
+
+. /etc/rc.subr
+
+name="ec2_user_data"
+rcvar=`set_rcvar`
+start_cmd="ec2_user_data_run"
+stop_cmd=":"
+
+ec2_user_data_run()
+{
+   fetch -q -o - http://169.254.169.254/latest/meta-data/user-data | sh -
+}
+
+load_rc_config $name
+run_rc_command "$1"
