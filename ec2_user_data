@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # PROVIDE: ec2_user_data
-# REQUIRE: FILESYSTEMS
+# REQUIRE: FILESYSTEMS hostname
 
 # download user-data and run its content as sh
 : ${ec2_user_data=YES}
