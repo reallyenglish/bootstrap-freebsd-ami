@@ -15,7 +15,7 @@ stop_cmd=":"
 
 ec2_user_data_run()
 {
-   fetch -q -o - http://169.254.169.254/latest/meta-data/user-data | sh -
+   fetch -q -o - http://169.254.169.254/latest/user-data | sh -
 }
 
 load_rc_config $name
