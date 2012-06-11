@@ -7,7 +7,9 @@ bootstrapping scripts for FreeBSD AMI
 * untar the file
 * run make
 
-    \> fetch https://github.com/reallyenglish/bootstrap-freebsd-ami/tarball/master
-    \> tar zxf master
-    \> cd reallyenglish-bootstrap-freebsd-ami-*
-    \# make
+<pre>
+    > fetch https://github.com/reallyenglish/bootstrap-freebsd-ami/tarball/master
+    > tar zxf master
+    > cd reallyenglish-bootstrap-freebsd-ami-*
+    # make
+<pre>
