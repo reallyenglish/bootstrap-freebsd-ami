@@ -34,6 +34,5 @@ OSVERSION!= ${SYSCTL} -n kern.osreldate
 	rm -f /home/ec2-user/.ssh/authorized_keys
 	rm -f /home/ec2-user/.history
 	echo "PermitRootLogin without-password" >> /etc/ssh/sshd_config
-	/etc/rc.d/sshd restart
 .endif
 	rm -f /etc/ssh/ssh_host_*
