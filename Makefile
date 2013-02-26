@@ -24,7 +24,7 @@ OSVERSION!= ${SYSCTL} -n kern.osreldate
 .if ${OSVERSION} >= 901000
 	chpass -s /bin/sh ec2-user
 	pw usermod -u 0 -n ec2-user
-	chown -r root:wheel /usr/home/ec2-user
+	chown -R root:wheel /home/ec2-user
 .endif
  
  clean:
