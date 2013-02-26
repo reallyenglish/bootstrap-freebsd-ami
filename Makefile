@@ -25,15 +25,15 @@ OSVERSION!= ${SYSCTL} -n kern.osreldate
 	chpass -s /bin/sh ec2-user
 	pw usermod -u 0 -n ec2-user
 	chown -R root:wheel /home/ec2-user
-	echo "PermitRootLogin without-password" >> /etc/ssh/sshd_config
-	/etc/rc.d/sshd restart
 .endif
  
  clean:
-	rm -f /etc/ssh/ssh_host_*
 	rm -f /root/.ssh/authorized_keys
 	rm -f /root/.history
 .if ${OSVERSION} >= 901000
 	rm -f /home/ec2-user/.ssh/authorized_keys
 	rm -f /home/ec2-user/.history
+	echo "PermitRootLogin without-password" >> /etc/ssh/sshd_config
+	/etc/rc.d/sshd restart
 .endif
+	rm -f /etc/ssh/ssh_host_*
