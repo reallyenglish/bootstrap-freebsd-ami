@@ -25,6 +25,8 @@ OSVERSION!= ${SYSCTL} -n kern.osreldate
 	chpass -s /bin/sh ec2-user
 	pw usermod -u 0 -n ec2-user
 	chown -R root:wheel /home/ec2-user
+	echo "PermitRootLogin without-password" >> /etc/ssh/sshd_config
+	/etc/rc.d/sshd restart
 .endif
  
  clean:
