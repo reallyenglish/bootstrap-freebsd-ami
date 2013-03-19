@@ -13,3 +13,5 @@ bootstrapping scripts for FreeBSD AMI
     > cd reallyenglish-bootstrap-freebsd-ami-*
     # make
 </pre>
+
+ec2-scripts-1.3 cannot enable swap. to work around the problem, define FIX_SWAP

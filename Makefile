@@ -21,6 +21,9 @@ OSVERSION!= ${SYSCTL} -n kern.osreldate
 	cp ec2_user_data /etc/rc.d/ec2_user_data
 	chown root:wheel /etc/rc.d/ec2_user_data
 	chmod 755 /etc/rc.d/ec2_user_data
+.if defined(FIX_SWAP)
+	(cd /usr/local/etc/rc.d && patch < ${.CURDIR}/patch-ec2_ephemeralswap)
+.endif
 .if ${OSVERSION} >= 901000
 	chpass -s /bin/sh ec2-user
 	pw usermod -u 0 -n ec2-user
