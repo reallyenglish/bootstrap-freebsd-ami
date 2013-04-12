@@ -1,9 +1,15 @@
 #!/bin/sh
 
 # PROVIDE: ec2_user_data
-# REQUIRE: FILESYSTEMS hostname
+# BEFORE: rsyslogd syslogd
+# REQUIRE: netwait
 
-# download user-data and run its content as sh
+# download user-data and run its content as sh. currently, user-data is used to
+# set hostname before bootstrapping.
+#
+# TODO
+# - there should be a better way to set hostname (tags:Name?)
+
 : ${ec2_user_data_enable=YES}
 
 . /etc/rc.subr
