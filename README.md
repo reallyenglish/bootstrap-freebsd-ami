@@ -49,4 +49,4 @@ bootstrap the instance
 
 ec2-scripts-1.3 cannot enable swap. to work around the problem, define FIX_SWAP.
 
-FIXME: remove the wrok around here when the bug is fixed in the upstream.
+FIXME: remove the work around here when the bug is fixed in the upstream.
