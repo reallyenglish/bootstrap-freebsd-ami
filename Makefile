@@ -17,7 +17,11 @@ OSVERSION!= ${SYSCTL} -n kern.osreldate
 	chpass -s /bin/sh root
 	echo panicmail_enable=\"NO\" >> /etc/rc.conf
 	echo ec2_bootmail_enable=\"NO\" >> /etc/rc.conf
+.if ${OSVERSION} >= 1000000
+	touch /firstboot
+.else
 	touch /root/firstboot
+.endif
 	cp ec2_user_data /etc/rc.d/ec2_user_data
 	chown root:wheel /etc/rc.d/ec2_user_data
 	chmod 755 /etc/rc.d/ec2_user_data

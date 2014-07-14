@@ -40,6 +40,13 @@ bootstrap the instance
 * untar the file
 * run make
 
+FreeBSD 10.0-RELEASE and later needs CA root file.
+
+<pre>
+    # pkg install ca_root_nss
+    # ln -s /usr/local/share/certs/ca-root-nss.crt /etc/ssl/cert.pem
+</pre>
+
 <pre>
     > fetch https://github.com/reallyenglish/bootstrap-freebsd-ami/tarball/master
     > tar zxf master
