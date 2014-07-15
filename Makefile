@@ -26,7 +26,7 @@ OSVERSION!= ${SYSCTL} -n kern.osreldate
 	echo panicmail_enable=\"NO\" >> /etc/rc.conf
 	echo ec2_bootmail_enable=\"NO\" >> /etc/rc.conf
 	echo ec2_bootmail_enable=\"NO\" >> /etc/rc.conf
-	echo ec2_ephemeralswap_size=\"SWAP_SIZE\" >> /etc/rc.conf
+	echo ec2_ephemeralswap_size=\"${SWAP_SIZE}\" >> /etc/rc.conf
 .if ${OSVERSION} >= 1000000
 	touch /firstboot
 .else
