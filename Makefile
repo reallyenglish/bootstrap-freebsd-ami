@@ -2,6 +2,14 @@ AWK?=	/usr/bin/awk
 SYSCTL?=	/sbin/sysctl
 SRC_BASE?=	/usr/src
 
+# the size of swap in MB if available.
+# to enable swap, choose an instance type WITH ephemeral disk storage MORE THAN
+# 4GB. note that small instances do not have ephemeral disk. "4000" was choosen
+# because m3.medium has 4GB of ephemeral disk but "4096" does not work here.
+# if you specify "AUTO" here, the size of swap is automatically caluculated
+# (but only if ephemeral disk is large enough to create swap on it).
+SWAP_SIZE?=	4000
+
 # Get __FreeBSD_version (obtained from bsd.port.mk)
 .if !defined(OSVERSION)
 .if exists(/usr/include/sys/param.h)
@@ -17,6 +25,8 @@ OSVERSION!= ${SYSCTL} -n kern.osreldate
 	chpass -s /bin/sh root
 	echo panicmail_enable=\"NO\" >> /etc/rc.conf
 	echo ec2_bootmail_enable=\"NO\" >> /etc/rc.conf
+	echo ec2_bootmail_enable=\"NO\" >> /etc/rc.conf
+	echo ec2_ephemeralswap_size=\"SWAP_SIZE\" >> /etc/rc.conf
 .if ${OSVERSION} >= 1000000
 	touch /firstboot
 .else
@@ -26,7 +36,11 @@ OSVERSION!= ${SYSCTL} -n kern.osreldate
 	chown root:wheel /etc/rc.d/ec2_user_data
 	chmod 755 /etc/rc.d/ec2_user_data
 .if defined(FIX_SWAP)
+.if ${OSVERSION} >= 1000000
+	# swap bug is fixed on 10.0-RELEASE
+.else
 	(cd /usr/local/etc/rc.d && patch < ${.CURDIR}/patch-ec2_ephemeralswap)
+.endif
 .endif
 .if ${OSVERSION} >= 901000
 	chpass -s /bin/sh ec2-user
